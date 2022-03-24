@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kg.geektech.kotlinapplicationhomework.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySecondBinding
     private var user: String? = null
 
@@ -22,18 +21,22 @@ class SecondActivity : AppCompatActivity() {
     private fun buttonClicker() {
         binding.btnClicker.setOnClickListener {
             if (binding.etUser.text?.isEmpty() == true) {
-                Toast.makeText(this, "Редактируемая строка не может быть пустой", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.redactor_toast), Toast.LENGTH_SHORT)
                     .show()
             } else {
                 user = binding.etUser.text.toString()
-                setResult(RESULT_OK, intent.putExtra("User", user))
+                setResult(RESULT_OK, intent.putExtra(USER_KEY, user))
                 finish()
             }
         }
     }
 
     private fun getEditText() {
-        user = intent.getStringExtra("User")
+        user = intent.getStringExtra(USER_KEY)
         binding.etUser.setText(user)
+    }
+
+    companion object {
+        const val USER_KEY = "User"
     }
 }

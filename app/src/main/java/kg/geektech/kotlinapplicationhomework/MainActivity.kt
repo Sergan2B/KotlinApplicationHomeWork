@@ -14,7 +14,6 @@ import kg.geektech.kotlinapplicationhomework.databinding.ActivityMainBinding
 то вернуться на 1 активити и отобразить текст из 2 активити.(использовать registerForActivity)*/
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private var launcher: ActivityResultLauncher<Intent>? = null
     private var user: String? = null
@@ -31,13 +30,13 @@ class MainActivity : AppCompatActivity() {
     private fun buttonClicker() {
         binding.btnClicker.setOnClickListener {
             if (binding.etUser.text?.isEmpty() == true) {
-                Toast.makeText(this, "Редактируемая строка не может быть пустой", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.redactor_toast), Toast.LENGTH_SHORT)
                     .show()
             } else {
                 val intent = Intent(this@MainActivity, SecondActivity::class.java)
                 user = binding.etUser.text.toString()
-                intent.putExtra("User", user)
-                setResult(RESULT_OK, intent.putExtra("User", user))
+                intent.putExtra(USER_KEY, user)
+                setResult(RESULT_OK, intent.putExtra(USER_KEY, user))
                 launcher?.launch(intent)
             }
         }
@@ -46,9 +45,13 @@ class MainActivity : AppCompatActivity() {
     private fun resultLauncher() {
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
-                val userText = it.data?.getStringExtra("User")
+                val userText = it.data?.getStringExtra(USER_KEY)
                 binding.etUser.setText(userText)
             }
         }
+    }
+
+    companion object {
+        const val USER_KEY = "User"
     }
 }

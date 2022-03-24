@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonClicker() {
         binding.btnClicker.setOnClickListener {
             if (binding.etUser.text?.isEmpty() == true) {
-                Toast.makeText(this, "Редатируемая строка не может быть пустой", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Редактируемая строка не может быть пустой", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 val intent = Intent(this@MainActivity, SecondActivity::class.java)

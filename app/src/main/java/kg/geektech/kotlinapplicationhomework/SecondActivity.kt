@@ -25,18 +25,15 @@ class SecondActivity : AppCompatActivity() {
                     .show()
             } else {
                 user = binding.etUser.text.toString()
-                setResult(RESULT_OK, intent.putExtra(USER_KEY, user))
+                setResult(RESULT_OK, intent.putExtra(MainActivity.USER_KEY, user))
                 finish()
             }
         }
     }
 
     private fun getEditText() {
-        user = intent.getStringExtra(USER_KEY)
+        user = intent.getStringExtra(MainActivity.USER_KEY)
         binding.etUser.setText(user)
     }
 
-    companion object {
-        const val USER_KEY = "User"
-    }
 }

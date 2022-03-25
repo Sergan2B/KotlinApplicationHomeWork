@@ -35,5 +35,4 @@ class SecondActivity : AppCompatActivity() {
         user = intent.getStringExtra(MainActivity.USER_KEY)
         binding.etUser.setText(user)
     }
-
 }

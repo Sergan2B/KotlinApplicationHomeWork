@@ -15,6 +15,9 @@ import kg.geektech.kotlinapplicationhomework.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    //private lateinit var launcher: ActivityResultLauncher<Intent> Правильный вариант
+    //private lateinit var user: String Тоже вроде предположительный варинат
     private var launcher: ActivityResultLauncher<Intent>? = null
     private var user: String? = null
 
